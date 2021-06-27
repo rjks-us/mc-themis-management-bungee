@@ -1,0 +1,88 @@
+## This plugin was written by Robert Kratz on June 15. 2021
+## Support: https://link.rjks.us/support
+
+reasons:
+  Hacking:
+    id: 1
+    permission: 'system.themis.ban.hacking'
+    duration: -1
+    ban-points: 10
+    full-name: 'Client Modifications/Hackclient'
+  Teaming:
+    id: 2
+    permission: 'system.themis.ban.teaming'
+    duration: 7200
+    ban-points: 3
+    full-name: 'Crossteaming'
+  Reportabuse:
+    id: 3
+    permission: 'system.themis.ban.reportabuse'
+    duration: 7200
+    ban-points: 3
+    full-name: 'Reportabusing'
+  Name:
+    id: 4
+    permission: 'system.themis.ban.name'
+    duration: -1
+    ban-points: 5
+    full-name: 'Forbidden Name'
+  Skin:
+    id: 5
+    permission: 'system.themis.ban.skin'
+    duration: -1
+    ban-points: 5
+    full-name: 'Forbidden Skin'
+  Bugusing:
+    id: 6
+    permission: 'system.themis.ban.bug'
+    duration: -1
+    ban-points: 5
+    full-name: 'Bugusing'
+  Alt-Account:
+    id: 7
+    permission: 'system.themis.ban.bug'
+    duration: -1
+    ban-points: 5
+    full-name: 'Alt-Account'
+  Ban-Bypassing:
+    id: 8
+    permission: 'system.themis.ban.ban-bypassing'
+    duration: -1
+    ban-points: 5
+    full-name: 'Ban-Bypassing'
+  VPN:
+    id: 9
+    permission: 'system.themis.ban.vpn'
+    duration: -1
+    ban-points: 5
+    full-name: 'VPN/Proxy'
+  Security:
+    id: 0
+    permission: 'system.themis.ban.security'
+    duration: -1
+    ban-points: 5
+    full-name: 'VPN/Proxy'
+  Other:
+    id: 0
+    permission: 'system.themis.ban.other'
+    duration: -1
+    ban-points: 5
+    full-name: 'Other'
+## Ban Points are being added if a player has been banned, here you can configurate the value of the mute time of a player
+## If a player has been muted for Spamming the normal duration is 1200 seconds = 20 minutes and he has been added 1 mute point
+## If a player now has 1 mute point, the duration is being multiplied with 1.5 so: 1200 * 1.5 = 1800 seconds equals 30 minutes
+## If a player now has 4 mute points, the duration is being multiplied with 2 so: 1200 * 2 = 2400 seconds equals 40 minutes
+## If the value is set to -1, the player will be permanently muted
+ban-points-active: true
+ban-points:
+  '1': 1.5
+  '2': 1.7
+  '3': 1.9
+  '4': 2
+  '5': 2.5
+  '6': 3
+  '7': 4
+  '8': 5
+  '9': 6
+  '10': 10
+  '11': -1

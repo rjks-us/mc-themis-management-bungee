@@ -1,0 +1,52 @@
+## This plugin was written by Robert Kratz on June 15. 2021
+## Support: https://link.rjks.us/support
+
+reasons:
+  Spamming:
+    id: 1
+    permission: 'system.themis.mute.spamming'
+    duration: 1200
+    mute-points: 1
+    full-name: 'Chat Spamming'
+  Insult:
+    id: 2
+    permission: 'system.themis.mute.insult'
+    duration: 7200
+    mute-points: 3
+    full-name: 'Insulting Language'
+  Sexism:
+    id: 3
+    permission: 'system.themis.mute.sexism'
+    duration: 7200
+    mute-points: 3
+    full-name: 'Sexist language'
+  Advertisement:
+    id: 3
+    permission: 'system.themis.mute.ad'
+    duration: 7200
+    mute-points: 5
+    full-name: 'Advertisement'
+
+## Mute Points are being added if a player has been muted, here you can configurate the value of the mute time of a player
+## If a player has been muted for Spamming the normal duration is 1200 seconds = 20 minutes and he has been added 1 mute point
+## If a player now has 1 mute point, the duration is being multiplied with 1.5 so: 1200 * 1.5 = 1800 seconds equals 30 minutes
+## If a player now has 4 mute points, the duration is being multiplied with 2 so: 1200 * 2 = 2400 seconds equals 40 minutes
+## If the value is set to -1, the player will be permanently muted
+mute-points-active: true
+mute-points:
+  '1': 1
+  '2': 1.5
+  '3': 1.7
+  '4': 2
+  '5': 2.5
+  '6': 3
+  '7': 4
+  '8': 5
+  '9': 6
+  '10': 10
+  '11': -1
+
+## Here you can set the bypass servers, the mute system is not watching (Muted players can send text messages)
+## the Plugin checks if the servername contains the given name so build-server-01, build-server-02, build-server-03 [...] are all beeing ignored
+ignored-servers:
+  - build-server
