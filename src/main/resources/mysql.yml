@@ -1,0 +1,8 @@
+## This plugin was written by Robert Kratz on June 15. 2021
+## Support: https://link.rjks.us/support
+
+host: '127.0.0.1'
+port: '3306'
+database: 'themis'
+username: 'root'
+password: ''

@@ -8,6 +8,8 @@ import us.rjks.utils.Config;
 import us.rjks.utils.Messages;
 import us.rjks.utils.MuteManager;
 
+import java.util.logging.Level;
+
 /***************************************************************************
  *
  *  Urheberrechtshinweis
@@ -20,6 +22,7 @@ public class ProxyManager {
 
     private Config config;
     private Messages messages;
+    private MySQL mySQL;
 
     private BanManager banManager;
     private MuteManager muteManager;
@@ -28,6 +31,11 @@ public class ProxyManager {
 
     public ProxyManager(Plugin plugin) throws Exception {
         this.plugin = plugin;
+
+        this.mySQL = new MySQL(plugin, plugin.getDataFolder() + "/", "mysql", ModuleType.YML, false);
+        this.mySQL.loadTemplate("mysql.yml");
+        this.mySQL.loadFile();
+        try { this.mySQL.connect();} catch (Exception exception) {getPlugin().getLogger().log(Level.WARNING, "[DB] Could not connect to database due of an fatal error, check credentials: "); getPlugin().getLogger().log(Level.WARNING, exception.toString());}
 
         this.config = new Config(plugin, plugin.getDataFolder() + "/", "config", ModuleType.YML, false);
         this.config.loadTemplate("config.yml");
