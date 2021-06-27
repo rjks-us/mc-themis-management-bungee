@@ -7,6 +7,7 @@ import net.md_5.bungee.config.YamlConfiguration;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.util.HashMap;
 
 /***************************************************************************
@@ -65,7 +66,7 @@ public class BungeeModule {
 
     public void loadFromCache(String name) throws Exception {
         if (!fileExists()) {
-            FileUtils.copyInputStreamToFile(plugin.getResourceAsStream(name), new File(getDirectory(), name));
+            Files.copy(plugin.getResourceAsStream(name), new File(getDirectory(), name).toPath());
         }
     }
 
