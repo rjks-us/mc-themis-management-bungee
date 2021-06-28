@@ -1,4 +1,4 @@
-package us.rjks.core;
+package us.rjks.sql;
 
 import net.md_5.bungee.api.plugin.Plugin;
 import us.rjks.module.BungeeModule;

@@ -1,12 +1,9 @@
 package us.rjks.core;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import net.md_5.bungee.api.plugin.Plugin;
 import us.rjks.module.ModuleType;
-import us.rjks.utils.BanManager;
-import us.rjks.utils.Config;
-import us.rjks.utils.Messages;
-import us.rjks.utils.MuteManager;
+import us.rjks.sql.MySQL;
+import us.rjks.utils.*;
 
 import java.util.logging.Level;
 
@@ -26,6 +23,7 @@ public class ProxyManager {
 
     private BanManager banManager;
     private MuteManager muteManager;
+    private ReportManager reportManager;
 
     private Plugin plugin;
 
@@ -35,7 +33,10 @@ public class ProxyManager {
         this.mySQL = new MySQL(plugin, plugin.getDataFolder() + "/", "mysql", ModuleType.YML, false);
         this.mySQL.loadTemplate("mysql.yml");
         this.mySQL.loadFile();
-        try { this.mySQL.connect();} catch (Exception exception) {getPlugin().getLogger().log(Level.WARNING, "[DB] Could not connect to database due of an fatal error, check credentials: "); getPlugin().getLogger().log(Level.WARNING, exception.toString());}
+        try { this.mySQL.connect();} catch (Exception exception) {
+            getPlugin().getLogger().log(Level.WARNING, "[DB] Could not connect to database due of an fatal error, check credentials: ");
+            getPlugin().getLogger().log(Level.WARNING, exception.toString());
+        }
 
         this.config = new Config(plugin, plugin.getDataFolder() + "/", "config", ModuleType.YML, false);
         this.config.loadTemplate("config.yml");
@@ -54,6 +55,11 @@ public class ProxyManager {
         this.muteManager.loadTemplate("mute.yml");
         this.muteManager.loadFile();
         this.muteManager.loadMuteReasons();
+
+        this.reportManager = new ReportManager(plugin, plugin.getDataFolder() + "/", "report", ModuleType.YML, false);
+        this.reportManager.loadTemplate("report.yml");
+        this.reportManager.loadFile();
+        this.reportManager.loadReports();
     }
 
     public void loadListeners() {
