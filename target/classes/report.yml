@@ -1,0 +1,66 @@
+## This plugin was written by Robert Kratz on June 15. 2021
+## Support: https://link.rjks.us/support
+
+## A full list of icon id's can be found here: https://minecraft-ids.grahamedgecombe.com/
+
+reasons:
+  Hacking:
+    id: 0
+    type: 'ingame'
+    delay: 300
+    icon: 267
+    full-name: 'Hacking/Client modifications'
+  Bugusing:
+    id: 1
+    type: 'ingame'
+    delay: 300
+    icon: 32
+    full-name: 'Bugusing'
+  Teaming:
+    id: 2
+    type: 'ingame'
+    delay: 300
+    icon: 166
+    full-name: 'Teaming'
+  Chat:
+    id: 3
+    type: 'chat'
+    delay: 300
+    icon: 386
+    full-name: 'Forbidden language'
+  Trolling:
+    id: 4
+    type: 'ingame'
+    delay: 300
+    icon: 407
+    full-name: 'Trolling'
+  Spawntrapping:
+    id: 5
+    type: 'chat'
+    delay: 300
+    icon: 30
+    full-name: 'Spawntrapping'
+  Boosting:
+    id: 6
+    type: 'chat'
+    delay: 300
+    icon: 288
+    full-name: 'Boosting'
+  Skin:
+    id: 7
+    type: 'player'
+    delay: 300
+    icon: 416
+    full-name: 'Forbidden skin'
+  Name:
+    id: 8
+    type: 'player'
+    delay: 300
+    icon: 421
+    full-name: 'Forbidden name'
+  Clan:
+    id: 9
+    type: 'player'
+    delay: 300
+    icon: 425
+    full-name: 'Forbidden clan'
