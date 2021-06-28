@@ -65,6 +65,17 @@ public class Config extends BungeeModule {
         }
     }
 
+    public Boolean getBoolean(String path) {
+        if (getCache().containsKey(path)) return Boolean.parseBoolean(getCache().get(path).toString());
+        Object ob = getConfig().get(path);
+        if (ob != null) {
+            getCache().put(path, ob);
+            return Boolean.parseBoolean(ob.toString());
+        } else {
+            return false;
+        }
+    }
+
     public ArrayList<String> getStringList(String path) {
         if (getCache().containsKey(path)) return (ArrayList<String>) getCache().get(path);
         Object ob = getConfig().get(path);

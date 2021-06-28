@@ -1,10 +1,16 @@
 package us.rjks.core;
 
 import net.md_5.bungee.api.plugin.Plugin;
+import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import us.rjks.module.ModuleType;
 import us.rjks.sql.MySQL;
 import us.rjks.utils.*;
 
+import java.io.IOException;
+import java.net.URL;
+import java.text.ParseException;
 import java.util.logging.Level;
 
 /***************************************************************************
@@ -30,17 +36,21 @@ public class ProxyManager {
     public ProxyManager(Plugin plugin) throws Exception {
         this.plugin = plugin;
 
-        this.mySQL = new MySQL(plugin, plugin.getDataFolder() + "/", "mysql", ModuleType.YML, false);
-        this.mySQL.loadTemplate("mysql.yml");
-        this.mySQL.loadFile();
-        try { this.mySQL.connect();} catch (Exception exception) {
-            getPlugin().getLogger().log(Level.WARNING, "[DB] Could not connect to database due of an fatal error, check credentials: ");
-            getPlugin().getLogger().log(Level.WARNING, exception.toString());
-        }
-
         this.config = new Config(plugin, plugin.getDataFolder() + "/", "config", ModuleType.YML, false);
         this.config.loadTemplate("config.yml");
         this.config.loadFile();
+
+        this.mySQL = new MySQL(plugin, plugin.getDataFolder() + "/", "mysql", ModuleType.YML, false);
+        this.mySQL.loadTemplate("mysql.yml");
+        this.mySQL.loadFile();
+        if (config.getBoolean("database")) {
+            try { this.mySQL.connect();} catch (Exception exception) {
+                getPlugin().getLogger().log(Level.WARNING, "[DB] Could not connect to database due of an fatal error, check credentials: ");
+                getPlugin().getLogger().log(Level.WARNING, exception.toString());
+            }
+        } else {
+            getPlugin().getLogger().log(Level.INFO, "[Themis] Database disabled due configuration");
+        }
 
         this.messages = new Messages(plugin, plugin.getDataFolder() + "/", "messages", ModuleType.YML, false);
         this.messages.loadTemplate("messages.yml");
@@ -76,6 +86,20 @@ public class ProxyManager {
         this.banManager.reloadFile();
         this.muteManager.reloadFile();
 
+    }
+
+    public String getUUIDFromMojang(String name) throws Exception{
+        String url = "https://api.mojang.com/users/profiles/minecraft/" + name;
+        try {
+            @SuppressWarnings("deprecation")
+            String uuid = IOUtils.toString(new URL(url));
+            if(uuid.isEmpty()) return "Invalid name";
+            return ((JSONObject) JSONValue.parseWithException(uuid)).get("id").toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "error";
     }
 
     public Config getConfig() {

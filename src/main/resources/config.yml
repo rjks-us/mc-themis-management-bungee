@@ -1,4 +1,11 @@
 ## This plugin was written by Robert Kratz on June 28. 2021
 ## Support: https://link.rjks.us/support
 
+enabled: true
+database: true
+
 permission:
+  ban: system.themis.ban
+  ban-all-resons: system.themis.ban.*
+  mute: system.themis.mute
+  mute-all-resons: system.themis.mute.*

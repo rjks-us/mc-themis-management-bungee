@@ -1,6 +1,8 @@
 package us.rjks.core;
 
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
+import us.rjks.cmd.Ban;
 
 import java.util.logging.Level;
 
@@ -14,8 +16,8 @@ import java.util.logging.Level;
 
 public class Main extends Plugin {
 
-    private ProxyManager proxyManager;
-    private Main instance;
+    private static ProxyManager proxyManager;
+    private static Main instance;
 
     @Override
     public void onEnable() {
@@ -29,6 +31,8 @@ public class Main extends Plugin {
             /**
              * Commands are relying on the GameManager so it has to be registered after the GameManager
              * */
+
+            ProxyServer.getInstance().getPluginManager().registerCommand(this, new Ban("ban"));
             //TODO: init listeners
         } catch (Exception e) {
             getLogger().log(Level.INFO, "[Themis] Fatal error while loading the plugin");
@@ -49,5 +53,13 @@ public class Main extends Plugin {
     public void onLoad() {
         getLogger().log(Level.INFO, "[Themis] Server Management System booting up");
         super.onLoad();
+    }
+
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public static ProxyManager getProxyManager() {
+        return proxyManager;
     }
 }

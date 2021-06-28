@@ -45,6 +45,10 @@ public class PunishReasons {
         return name;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
     public String getPermission() {
         return permission;
     }

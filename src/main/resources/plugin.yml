@@ -1,3 +1,5 @@
 name: themis-management
 main: us.rjks.core.Main
 version: 1.0
+commands:
+  ban:

@@ -1,0 +1,10 @@
+## This plugin was written by Robert Kratz on June 28. 2021
+## Support: https://link.rjks.us/support
+
+nopermission: '&cYou do not have permission to execute this command'
+noplayer: '&cYou have to be a player to execute this command'
+
+cmd-ban-help:
+  - '&c&lThemis &r&8\u00BB &7There are following &eBan reasons&8:'
+  - '%ban-reason-line%'
+ban-reason-line: '&c&lThemis &r&8\u00BB &e%id% &8| &7%name% &8| &c%duration%'

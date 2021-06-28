@@ -3,6 +3,7 @@ package us.rjks.sql;
 import net.md_5.bungee.api.plugin.Plugin;
 import us.rjks.module.BungeeModule;
 import us.rjks.module.ModuleType;
+import us.rjks.utils.Config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,6 +40,12 @@ public class MySQL extends BungeeModule {
             connection = null;
             getPlugin().getLogger().log(Level.INFO, "[Themis] Disconnected successfully to SQL Database");
         }
+    }
+
+    public void createTables() {
+        update("CREATE TABLE IF NOT EXISTS global_ban (id VARCHAR(255), uuid VARCHAR(255), duration VARCHAR(255), reason VARCHAR(255), banner VARCHAR(255), ip VARCHAR(255), ipbanned VARCHAR(255), date VARCHAR(255))");
+        update("CREATE TABLE IF NOT EXISTS global_mute (id VARCHAR(255), uuid VARCHAR(255), duration VARCHAR(255), reason VARCHAR(255), banner VARCHAR(255), date VARCHAR(255))");
+        update("CREATE TABLE IF NOT EXISTS global_report (id VARCHAR(255), uuid VARCHAR(255), targetServer VARCHAR(255), duration VARCHAR(255), reason VARCHAR(255), reporter VARCHAR(255), reporterServer VARCHAR(255), date VARCHAR(255))");
     }
 
     public boolean isConnected() {

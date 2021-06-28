@@ -35,18 +35,20 @@ public class MuteManager extends BungeeModule {
             if (key.equals("reasons") && getConfig().get(key) instanceof Configuration) {
                 Configuration configuration = getConfig().getSection(key);
                 configuration.getKeys().forEach(s -> {
+                    String path = key + "." + s + ".";
                     PunishReasons banReasons = new PunishReasons(
-                            configuration.getString("full-name"),
-                            configuration.getString("permission"),
-                            configuration.getInt("id"), configuration.getInt("duration"),
-                            configuration.getInt("ban-points"));
+                            getConfig().getString(path + "full-name"),
+                            getConfig().getString(path + "permission"),
+                            getConfig().getInt(path + "id"),
+                            getConfig().getInt(path + "duration"),
+                            getConfig().getInt(path + "mute-points"));
                     reasons.add(banReasons);
                 });
             }
             if (key.equals("mute-points") && mutePoints) {
                 Configuration configuration = getConfig().getSection(key);
                 configuration.getKeys().forEach(s -> {
-                    rules.put(Integer.parseInt(s), configuration.getInt(s));
+                    rules.put(Integer.parseInt(s), getConfig().getInt(key + "." + s));
                 });
             }
             if (key.equals("ignored-servers")) {
