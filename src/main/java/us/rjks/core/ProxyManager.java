@@ -102,6 +102,10 @@ public class ProxyManager {
         return "error";
     }
 
+    public MySQL getMySQL() {
+        return mySQL;
+    }
+
     public Config getConfig() {
         return config;
     }
