@@ -33,8 +33,18 @@ public class Document {
 
         while (key.hasNext()) {
             Object o = key.next();
-            object.put(o.toString(), jsonObject.get(o.toString()));
+            if(o instanceof String && jsonObject.get(o).toString().startsWith("{")) {
+                System.out.println("FIELD");
+                object.put(o.toString(), new Field(jsonObject.get(o.toString()).toString()));
+            } else {
+                System.out.println("OBJECT");
+                object.put(o.toString(), jsonObject.get(o.toString()));
+            }
         }
+    }
+
+    public void set(String key, Object value) {
+        object.
     }
 
     public void addString(String key, String value) {

@@ -1,8 +1,10 @@
 package us.rjks.sql;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /***************************************************************************
  *
@@ -17,11 +19,40 @@ public class Field {
     public HashMap<String, Object> object = new HashMap<>();
 
     public Field(String json) {
+        try {
+            JSONObject jsonObject = (JSONObject) new JSONParser().parse(json);
+            Iterator<Object> key = jsonObject.keySet().iterator();
 
+            while (key.hasNext()) {
+                Object o = key.next();
+                if(o instanceof Field) {
+                    object.put(o.toString(), new Field(jsonObject.get(o.toString()).toString()));
+                } else {
+                    object.put(o.toString(), jsonObject.get(o.toString()));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Field(JSONObject jsonObject) {
+        try {
+            Iterator<Object> key = jsonObject.keySet().iterator();
 
+            while (key.hasNext()) {
+                Object o = key.next();
+                if(o instanceof Field) {
+                    object.put(o.toString(), new Field(jsonObject.get(o.toString()).toString()));
+                } else {
+                    object.put(o.toString(), jsonObject.get(o.toString()));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void addString(String key, String value) {

@@ -7,4 +7,8 @@ noplayer: '&cYou have to be a player to execute this command'
 cmd-ban-help:
   - '&c&lThemis &r&8\u00BB &7There are following &eBan reasons&8:'
   - '%ban-reason-line%'
+  - '&c&lThemis &r&8\u00BB &cUse: /ban [USER] [ID] (optional)[-ip]'
 ban-reason-line: '&c&lThemis &r&8\u00BB &e%id% &8| &7%name% &8| &c%duration%'
+cmd-ban-invalid-username: '&c&lThemis &r&8\u00BB &cNo username could be found under this name'
+cmd-ban-invalid-ban-id: '&c&lThemis &r&8\u00BB &cNo ban reason could be found under this id'
+cmd-ban-no-permission: '&c&lThemis &r&8\u00BB &cYou do not have permission to ban under this id'

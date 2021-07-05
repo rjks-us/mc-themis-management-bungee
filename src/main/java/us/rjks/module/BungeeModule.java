@@ -50,6 +50,12 @@ public class BungeeModule {
             }
         } catch (Exception exception) {
         }
+
+        constructor();
+    }
+
+    public void constructor() {
+
     }
 
     public void createEmptyFile() throws Exception {

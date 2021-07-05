@@ -27,6 +27,34 @@ import java.util.logging.Level;
 
 public class MySQL extends BungeeModule {
 
+    public static void main(String[] args) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("1", "test1");
+        jsonObject.put("2", "test2");
+        jsonObject.put("3", "test3");
+        jsonObject.put("4", "test4");
+
+        JSONObject jsonObject1 = new JSONObject();
+        jsonObject1.put("test1", "123");
+        jsonObject1.put("test3", false);
+        jsonObject.put("ar", jsonObject1);
+
+        Document document = new Document(jsonObject);
+
+        System.out.println(jsonObject.toJSONString());
+
+        document.getObjects().forEach((s, o) -> {
+            if (o instanceof Field) {
+                Field field = (Field) o;
+                field.getObjects().forEach((s1, o1) -> {
+                    System.out.println("field: " + s1 + " : " + o1);
+                });
+            } else {
+                System.out.println("object: " + s + " : " + o);
+            }
+        });
+    }
+
     private Connection connection;
 
     public MySQL(Plugin plugin, String directory, String name, ModuleType type, boolean autoCreate) {
